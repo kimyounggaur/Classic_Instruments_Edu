@@ -2,6 +2,8 @@
 
 실행일: 2026-10-15 (Asia/Seoul). 실제 로컬 코드와 production 서버 기준이며 음악 내용 승인·보안/접근성 인증을 뜻하지 않는다.
 
+아래는 초기 v1.1 검증 기록이다. 후속 클래식 UI·움직임 변경의 검증 결과는 [CLASSICAL_THEME](CLASSICAL_THEME.md)에 별도로 기록한다.
+
 ## 환경과 명령
 
 Windows PowerShell, Node v24.14.0, pnpm11.25.0. 기존 lockfile의 Next16.3.4/React19.2.6/TypeScript5.9.3/Zod3.25.76 유지. `pnpm install --frozen-lockfile` 통과. Sites 설치 helper가 Windows에서 시작되지 않아 기존 pnpm 경로로 설치했다.

@@ -2,6 +2,8 @@
 
 기준일: 2026-10-15 (Asia/Seoul). 사용자가 첨부한 v1.1 설계 기준의 로컬 시연 앱이다.
 
+후속 요청으로 GitHub→Vercel 자동 배포를 연결했다. `main`은 [production 시연 앱](https://classic-instruments-edu.vercel.app/)으로, 다른 브랜치는 preview로 배포된다. 클래식 음악원 테마와 선택 가능한 애니메이션의 구현·확인 범위는 [CLASSICAL_THEME](CLASSICAL_THEME.md)에 기록한다. 아래 표는 초기 v1.1 구현 이력이다.
+
 | 단계 | 구현과 확인 |
 | --- | --- |
 | P00 | 기존 App Router/React/TypeScript와 lockfile 조사, 4악기 범위·자산 인벤토리·요구사항 대응표 |

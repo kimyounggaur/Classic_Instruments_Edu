@@ -1,0 +1,1651 @@
+/* A quiet concert hall for learning. Functional reader and print rules stay in
+   prototype.css; these visual overrides apply to the screen only. */
+@media screen {
+  :root {
+    --paper: #f7f4ed;
+    --ink: #25334c;
+    --muted: #687080;
+    --line: #e2dbce;
+    --green: #25334c;
+    --accent: #9b713b;
+    --concert-navy: #182437;
+    --concert-brass: #c8a66d;
+    --concert-cream: #fffaf0;
+  }
+
+  body {
+    background: var(--paper);
+  }
+
+  ::selection {
+    color: #182437;
+    background: #ead4ad;
+  }
+
+  .proto-app {
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse at 83% 8%, #ede2cd78, transparent 47%),
+      radial-gradient(ellipse at 16% 69%, #e3e9ed55, transparent 38%);
+  }
+
+  .music-page-background {
+    position: fixed;
+    top: 120px;
+    left: calc(var(--sidebar) + 2%);
+    right: 0;
+    width: auto;
+    max-width: 1100px;
+    height: 780px;
+    color: #887653;
+    opacity: 0.045;
+    pointer-events: none;
+    user-select: none;
+    z-index: -1;
+  }
+
+  .music-page-background > svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .demo-strip {
+    position: relative;
+    z-index: 31;
+    color: #e9dfcc;
+    background: #111c2c;
+    letter-spacing: 0.025em;
+  }
+
+  .status-dot {
+    background: #d0ae73;
+  }
+
+  .proto-sidebar {
+    color: #e7eaf0;
+    background:
+      radial-gradient(ellipse at 50% 0%, #34465d5c, transparent 43%),
+      linear-gradient(175deg, #1e2c41, #172337 80%);
+    border-right: 1px solid #314058;
+    padding-top: 34px;
+  }
+
+  .proto-brand {
+    color: #fff6e6;
+  }
+
+  .brand-mark {
+    color: #e0c18c;
+    background: #d5b57c12;
+    border: 1px solid #c8a66d58;
+    border-radius: 13px 13px 5px 13px;
+  }
+
+  .proto-brand small {
+    color: #b5c0d0;
+    letter-spacing: 0.12em;
+  }
+
+  .proto-sidebar .nav-label {
+    color: #a9b5c7;
+    letter-spacing: 0.085em;
+  }
+
+  .proto-sidebar nav a {
+    position: relative;
+    color: #c6cfdd;
+    border: 1px solid transparent;
+    border-radius: 10px;
+  }
+
+  .proto-sidebar nav a:hover {
+    color: #fff7e8;
+    background: #34435a;
+  }
+
+  .proto-sidebar nav a.active {
+    color: #f1d7a8;
+    background: #c8a66d17;
+    border-color: #c8a66d35;
+  }
+
+  .proto-sidebar nav a.active::before {
+    content: "";
+    position: absolute;
+    left: -1px;
+    top: 13px;
+    bottom: 13px;
+    width: 3px;
+    border-radius: 0 3px 3px 0;
+    background: #d4b17a;
+  }
+
+  .proto-sidebar nav a small {
+    color: #f4dbaa;
+    background: #d0b17c20;
+  }
+
+  .proto-sidebar nav a > svg:last-child:not(:first-child) {
+    color: #9baac0;
+  }
+
+  .proto-sidebar nav a > i {
+    box-shadow: 0 0 0 3px #ffffff0d;
+    filter: brightness(1.6) saturate(0.7);
+  }
+
+  .side-rule {
+    background: #aabbd326;
+  }
+
+  .sidebar-note {
+    padding: 20px 16px;
+    border-color: #ba9a673b;
+    color: #dec08e;
+    background: linear-gradient(145deg, #c8a66d11, #c8a66d05);
+    border-radius: 13px;
+  }
+
+  .sidebar-note h3 {
+    color: #f2e7d1;
+  }
+
+  .sidebar-note p {
+    color: #b9c2d0;
+  }
+
+  .sidebar-note a {
+    color: #e6c68e;
+  }
+
+  .local-profile {
+    border-top: 1px solid #aabbd326;
+    margin-top: 30px;
+    padding-top: 22px;
+  }
+
+  .local-profile > span {
+    color: #eed7ad;
+    border: 1px solid #c8a66d40;
+    background: #c8a66d15;
+  }
+
+  .local-profile strong {
+    color: #e5e9ef;
+  }
+
+  .local-profile small {
+    color: #aab7c9;
+  }
+
+  .proto-sidebar .mobile-close {
+    color: #e5e9ef;
+  }
+
+  .proto-sidebar :is(a, button):focus-visible {
+    outline-color: #edcf95;
+  }
+
+  .proto-body {
+    position: relative;
+    z-index: 0;
+  }
+
+  .proto-topbar {
+    background: #faf7f0ed;
+    border-bottom-color: #e1dacd;
+    height: 76px;
+    gap: 16px;
+  }
+
+  .topbar-location,
+  .role-select {
+    color: #616d7e;
+  }
+
+  .topbar-location strong {
+    color: #28364c;
+  }
+
+  .topbar-tools {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    min-width: 0;
+  }
+
+  .role-select select {
+    border-color: #d6cec0;
+    color: #34425a;
+    background: #fffaf3;
+    border-radius: 8px;
+  }
+
+  .motion-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 8px 12px;
+    min-height: 40px;
+    font-size: 11px;
+    color: #4d5d71;
+    background: #ede9e1;
+    border: 1px solid #dcd4c6;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  .motion-toggle[aria-pressed="true"] {
+    background: #e5eaf0;
+    border-color: #c7d0dd;
+    color: #354c6d;
+  }
+
+  .proto-main {
+    padding-top: 39px;
+  }
+
+  .heading-row {
+    margin-bottom: 28px;
+  }
+
+  .heading-row h1,
+  .workspace-view h1 {
+    color: #25334c;
+    font-family: "Noto Serif KR", "Batang", "Georgia", serif;
+    font-weight: 600;
+    letter-spacing: -0.055em;
+  }
+
+  .heading-row h1 {
+    font-size: 34px;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  .eyebrow,
+  .edition-mark,
+  .edition-mark span,
+  .intro,
+  .book-category,
+  .book-meta,
+  .book-description > p,
+  .book-state,
+  .shelf-caption,
+  .proto-footer,
+  .proto-footer .text-button,
+  .collection-help,
+  .collection-tabs button,
+  .quick-links small,
+  .shelf-search,
+  .shelf-sort select,
+  .advanced-filters,
+  .reader-meta-bar,
+  .reader-toolbar,
+  .reader-toc > p,
+  .resource-info dt,
+  .resource-info .muted,
+  .resource-info section > p {
+    color: #616b79;
+  }
+
+  .eyebrow {
+    color: #8a683b;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+  }
+
+  .intro {
+    font-size: 14px;
+    margin-top: 12px;
+  }
+
+  .edition-mark {
+    padding-left: 20px;
+    border-left-color: #cbbd9e;
+    color: #7a603b;
+  }
+
+  .edition-mark span {
+    color: #73757a;
+    font-size: 9px;
+  }
+
+  .library-hero {
+    position: relative;
+    min-height: 374px;
+    border-radius: 20px;
+    border: 1px solid #2d3c53;
+    background:
+      radial-gradient(ellipse at 78% 27%, #a780483b, transparent 43%),
+      radial-gradient(ellipse at 95% 93%, #4b66824a, transparent 48%),
+      linear-gradient(118deg, #182437 19%, #25334b 100%);
+    box-shadow: 0 16px 32px #26324612, inset 0 1px 0 #ffffff0a;
+  }
+
+  .library-hero::before {
+    content: "";
+    position: absolute;
+    top: -130px;
+    right: -2%;
+    width: 550px;
+    height: 600px;
+    background: conic-gradient(from 150deg at 50% 0, transparent 0deg, #ddc18c0e 11deg, transparent 24deg, #ddc18c07 34deg, transparent 48deg);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-content {
+    flex: 1;
+    min-width: 0;
+    max-width: 64%;
+    padding: 38px 40px 33px;
+  }
+
+  .library-hero .hero-kicker {
+    color: #e2c797;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-kicker > span {
+    background: #d1ad70;
+    box-shadow: 0 0 0 4px #c8a66d13;
+  }
+
+  .hero-content h2 {
+    margin: 20px 0 15px;
+    color: #fff7e8;
+    font-family: "Noto Serif KR", "Batang", "Georgia", serif;
+    font-size: 36px;
+    line-height: 1.5;
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  .library-hero .hero-content > p {
+    color: #c6cfdd;
+    font-size: 13px;
+    line-height: 1.9;
+  }
+
+  .hero-tags {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+    margin-top: 17px;
+  }
+
+  .hero-tags > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    letter-spacing: 0;
+    line-height: 1.5;
+    padding: 5px 9px;
+    color: #dec79f;
+    border: 1px solid #d0ae743b;
+    background: #c8a66d09;
+    border-radius: 100px;
+  }
+
+  .hero-content .hero-button {
+    margin-top: 22px;
+    min-height: 46px;
+    padding: 11px 17px;
+    border-radius: 9px;
+    color: #202d42;
+    background: #dfc18e;
+    border: 1px solid #e4cca1;
+    font-size: 12px;
+    box-shadow: 0 4px 18px #00000013;
+  }
+
+  .hero-content .hero-button:hover {
+    color: #182437;
+    background: #efdab4;
+  }
+
+  .library-hero .hero-footnote {
+    color: #bbc5d4;
+    font-size: 10px;
+    margin-top: 15px;
+  }
+
+  .concert-art {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 45%;
+    max-width: 510px;
+    color: #d5b57e;
+    pointer-events: none;
+    user-select: none;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .concert-arch {
+    position: absolute;
+    width: 98%;
+    height: 100%;
+    right: 0;
+    bottom: 0;
+    color: #c8a66d;
+    opacity: 0.3;
+  }
+
+  .concert-score {
+    position: absolute;
+    inset: 8px -15px auto auto;
+    width: 110%;
+    height: 96%;
+    color: #dec796;
+    opacity: 0.42;
+  }
+
+  .concert-score path {
+    vector-effect: non-scaling-stroke;
+  }
+
+  .concert-instrument {
+    position: absolute;
+    color: #dfc18a;
+    filter: drop-shadow(0 12px 10px #050d1c40);
+  }
+
+  .concert-instrument > svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .concert-instrument.instrument-violin {
+    width: 135px;
+    height: 205px;
+    right: 164px;
+    bottom: 50px;
+    transform: rotate(-13deg);
+    color: #ebcf9d;
+  }
+
+  .concert-instrument.instrument-cello {
+    width: 175px;
+    height: 266px;
+    right: 41px;
+    bottom: 36px;
+    transform: rotate(8deg);
+  }
+
+  .concert-instrument.instrument-flute {
+    width: 90px;
+    height: 125px;
+    right: 18px;
+    top: 22px;
+    color: #c4cfdf;
+    opacity: 0.72;
+  }
+
+  .concert-instrument.instrument-clarinet {
+    width: 75px;
+    height: 143px;
+    right: 292px;
+    bottom: 33px;
+    transform: rotate(-18deg);
+    color: #a8bacf;
+    opacity: 0.7;
+  }
+
+  .concert-caption {
+    position: absolute;
+    bottom: 22px;
+    right: 54px;
+    color: #c9b590;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 11px;
+    letter-spacing: 0.045em;
+  }
+
+  .quick-links {
+    margin: 22px 0 39px;
+    gap: 15px;
+  }
+
+  .quick-links > button {
+    border-radius: 13px;
+    padding: 19px 17px;
+    border-color: #e0d8ca;
+    background: #fffcf6d9;
+    box-shadow: 0 3px 8px #4d402b03;
+  }
+
+  .quick-links > button > span {
+    color: #556984;
+    background: #e9edf1;
+    border-radius: 11px;
+  }
+
+  .quick-links > button:nth-child(2) > span {
+    color: #8d683c;
+    background: #f2e8d7;
+  }
+
+  .quick-links > button:nth-child(3) > span {
+    color: #6f5e7c;
+    background: #eee7f0;
+  }
+
+  .quick-links strong {
+    color: #30405a;
+    font-size: 13px;
+  }
+
+  .quick-links > button > svg {
+    color: #8d7b5a;
+  }
+
+  .quick-links > button:hover {
+    border-color: #cbb58d;
+    background: #fffaf0;
+  }
+
+  .section-heading h2,
+  .book-description h3 {
+    color: #29384f;
+  }
+
+  .section-heading h2 > span {
+    color: #866b43;
+  }
+
+  .badge {
+    color: #785b32;
+    background: #f2eadb;
+    border-color: #e1d2b8;
+    border-radius: 100px;
+    padding: 4px 10px;
+  }
+
+  .shelf-controls {
+    gap: 13px;
+    padding-bottom: 20px;
+  }
+
+  .instrument-tabs {
+    gap: 5px;
+  }
+
+  .instrument-tabs button {
+    border-radius: 100px;
+    color: #5f6b7a;
+    font-size: 12px;
+    padding-right: 13px;
+    padding-left: 13px;
+  }
+
+  .instrument-tabs button.active {
+    background: #283a54;
+    color: #fff5e5;
+    box-shadow: 0 3px 8px #25334c0d;
+  }
+
+  .instrument-tabs button:not(.active):hover {
+    background: #eae5da;
+    color: #273a54;
+  }
+
+  .shelf-search {
+    border-color: #ddd4c4;
+    background: #fffaf3;
+    border-radius: 10px;
+  }
+
+  .shelf-search input {
+    color: #30405a;
+  }
+
+  .shelf-search input::placeholder {
+    color: #757982;
+  }
+
+  .shelf-sort select {
+    background: #fffaf3;
+    border-color: #d8d1c4;
+    border-radius: 8px;
+  }
+
+  .view-toggle {
+    background: #eae5db;
+    border-color: #dbd3c6;
+    border-radius: 8px;
+  }
+
+  .view-toggle button[aria-pressed="true"] {
+    color: #263952;
+    background: #fffdf6;
+    box-shadow: 0 1px 4px #40352014;
+  }
+
+  .collection-tabs {
+    border-bottom-color: #e4dccf;
+  }
+
+  .collection-tabs button.active {
+    color: #354a68;
+    border-bottom-color: #9f7c46;
+  }
+
+  .book-cover {
+    border-radius: 5px 10px 10px 5px;
+    border-left-width: 6px;
+    box-shadow: 3px 4px 0 #e5ddcf, 6px 10px 18px #3b352617;
+    transform-origin: center 70%;
+  }
+
+  .book-cover::after {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border: 1px solid color-mix(in srgb, var(--book-color) 12%, transparent);
+    border-radius: 1px 5px 5px 1px;
+    pointer-events: none;
+  }
+
+  .cover-demo {
+    background: #ffffff16;
+    border-radius: 3px;
+  }
+
+  .cover-drawing {
+    opacity: 0.85;
+  }
+
+  .shelf-book::after {
+    height: 7px;
+    background: linear-gradient(#d8c8a9, #c2ad88);
+    box-shadow: 0 6px 8px #5f4a2812;
+  }
+
+  .book-bookmark {
+    color: #7c8490;
+    background: #f7f4ed;
+  }
+
+  .book-bookmark:hover {
+    color: #8e652e;
+    background: #efe4d0;
+  }
+
+  .book-bookmark.selected {
+    color: #966b30;
+    background: #efe4d0;
+  }
+
+  .book-state > span {
+    background: #839098;
+  }
+
+  .book-list .shelf-book {
+    background: #fffcf6;
+    border-color: #e2d9c9;
+    border-radius: 13px;
+  }
+
+  .library-footnote,
+  .resume-card {
+    background: #eee9df;
+    border-color: #ded4c0;
+    border-radius: 13px;
+    color: #59667a;
+  }
+
+  .library-footnote strong {
+    color: #30435e;
+  }
+
+  .library-footnote p,
+  .resume-card p,
+  .resume-card small {
+    color: #646b75;
+  }
+
+  .resume-icon {
+    color: #9a7137;
+    background: #e5d7bc;
+  }
+
+  .proto-footer {
+    border-top-color: #e2dacb;
+    background: #f5f1e8b3;
+  }
+
+  .button {
+    color: #34475f;
+    border-color: #d5ccbc;
+    border-radius: 9px;
+    background: #fffaf2;
+  }
+
+  .button:hover {
+    background: #eee7db;
+  }
+
+  .button.primary,
+  .button.primary:hover {
+    color: #fff8eb;
+    background: #263952;
+    border-color: #263952;
+  }
+
+  .button.primary:hover {
+    background: #354d6e;
+  }
+
+  .text-button {
+    color: #526680;
+  }
+
+  .panel,
+  .ws-panel {
+    background: #fffdf7;
+    border-color: #e1d8c8;
+    border-radius: 13px;
+    box-shadow: 0 4px 18px #42382404;
+  }
+
+  .reader-toc {
+    background: #f1ece2;
+  }
+
+  .reader-toc h2 {
+    color: #7b603a;
+    letter-spacing: 0.04em;
+  }
+
+  .reader-toc button {
+    color: #59687b;
+    border-radius: 8px;
+  }
+
+  .reader-toc button.active {
+    color: #253b5b;
+    background: #e1e6eb;
+  }
+
+  .reader-toolbar {
+    background: #faf5eb;
+    border-bottom-color: #e4daca;
+  }
+
+  .reading-content {
+    color: #344159;
+    background: #fffdf7;
+  }
+
+  .reading-content h2,
+  .reading-content h3 {
+    color: #263952;
+  }
+
+  .resource-info dt {
+    color: #687282;
+  }
+
+  .notice {
+    color: #59677a;
+    background: #eceff1;
+    border-color: #d6dfe5;
+    border-radius: 9px;
+  }
+
+  .notice.warning {
+    color: #785625;
+    background: #f6eddb;
+    border-color: #e4d0a9;
+  }
+
+  .report-dialog {
+    color: #2d3b52;
+    background: #fffaf1;
+    border-color: #dbccb0;
+    box-shadow: 0 28px 90px #080f1f4d;
+    border-radius: 18px;
+  }
+
+  .report-dialog::backdrop {
+    background: #101b2caa;
+    backdrop-filter: blur(4px);
+  }
+
+  .proto-toast {
+    background: #26384f;
+    color: #fff6e5;
+    border: 1px solid #c8a66d4d;
+    border-radius: 12px;
+    box-shadow: 0 10px 32px #14203524;
+  }
+
+  .app-symbol {
+    color: #657d9a;
+    background: #e8edf2;
+    border-radius: 13px;
+  }
+
+  .workspace-view {
+    --ws-ink: #2d3b52;
+    --ws-muted: #687181;
+    --ws-border: #e2d9c9;
+    --ws-green: #2a3e59;
+    --ws-paper: #fffdf7;
+  }
+
+  .workspace-view :is(.ws-table thead, .ws-table code, .ws-review-track > div, .ws-count, .ws-time-legend, .ws-field > small, .ws-section-heading > span, .ws-section-heading > small, .ws-admin-stats span, .ws-plan-bottom) {
+    color: #5f6b7e;
+  }
+
+  .workspace-view :is(input, select, textarea) {
+    border-color: #d9d0c1;
+    background: #fffdf7;
+    border-radius: 9px;
+  }
+
+  .workspace-view :is(input, select, textarea):focus {
+    border-color: #9b7b49;
+    box-shadow: 0 0 0 3px #b18c4520;
+  }
+
+  .workspace-view .ws-text-button:not(.ws-danger) {
+    color: #4c6689 !important;
+  }
+
+  .ws-eyebrow {
+    color: #85653c;
+  }
+
+  .ws-storage,
+  .ws-admin-notice,
+  .ws-inline-notice {
+    color: #53647a;
+    background: #ebeef1;
+    border-color: #d7dfe5;
+    border-radius: 11px;
+  }
+
+  .ws-count,
+  .ws-tag {
+    background: #edece6;
+    border-color: #ded6c8;
+    color: #596579;
+  }
+
+  .ws-tag.ws-demo {
+    color: #7f5d29;
+    background: #f2e7d1;
+    border-color: #dfcca8;
+  }
+
+  .ws-button {
+    color: #374a64;
+    border-color: #d6cebd;
+    background: #fffaf2;
+    border-radius: 9px;
+  }
+
+  .ws-button:hover {
+    background: #eee8dc;
+  }
+
+  .ws-button.ws-primary:hover {
+    background: #354e70;
+  }
+
+  .ws-plan-card {
+    border-radius: 16px;
+    box-shadow: 0 5px 16px #4d402b06;
+  }
+
+  .ws-plan-art {
+    color: #826239;
+    border-color: #ded4c3;
+    background:
+      radial-gradient(ellipse at 80% 10%, #dfc39140, transparent 66%),
+      #efe7d8;
+  }
+
+  .ws-plan-art.ws-cello {
+    color: #4f6682;
+    background: #e3e9ef;
+  }
+
+  .ws-plan-art.ws-flute {
+    color: #6f6284;
+    background: #eae5ee;
+  }
+
+  .ws-plan-art.ws-clarinet {
+    color: #695a44;
+    background: #e9e1d5;
+  }
+
+  .ws-resource-list > button.active,
+  .ws-tabs > a.active,
+  .ws-tabs > button.active {
+    color: #354f73;
+    background: #e5eaf0;
+    border-color: #c2cddc;
+  }
+
+  :is(button, a, input, select, textarea, summary):focus-visible {
+    outline-color: #9a6a2d;
+  }
+
+  .library-hero :is(button, a):focus-visible {
+    outline-color: #f6d99e;
+  }
+
+  [data-motion="on"] [data-reveal].reveal-ready {
+    transition: opacity 560ms ease, translate 560ms cubic-bezier(0.2, 0.7, 0.3, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  [data-motion="on"] [data-reveal].reveal-ready:not(.is-revealed) {
+    opacity: 0;
+    translate: 0 17px;
+  }
+
+  [data-motion="on"] .concert-score .score-line {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+    animation: concert-score-draw 2.8s ease both;
+  }
+
+  [data-motion="on"] .concert-instrument > svg {
+    animation: concert-instrument-enter 1.8s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+  }
+
+  [data-motion="on"] .concert-instrument path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+    animation: concert-score-draw 2.4s ease both;
+  }
+
+  [data-motion="on"] .instrument-cello > svg {
+    animation-delay: 160ms;
+  }
+
+  [data-motion="on"] .instrument-flute > svg {
+    animation-delay: 280ms;
+  }
+
+  [data-motion="on"] .instrument-clarinet > svg {
+    animation-delay: 380ms;
+  }
+
+  [data-motion="on"] .book-bookmark.selected svg,
+  [data-motion="on"] .icon-button[aria-pressed="true"] > svg {
+    animation: concert-bookmark-pop 360ms ease both;
+  }
+
+  [data-motion="on"] .report-dialog[open] {
+    animation: concert-dialog-enter 230ms cubic-bezier(0.2, 0.8, 0.3, 1) both;
+  }
+
+  [data-motion="on"] .proto-toast {
+    animation: concert-toast-enter 250ms ease both;
+  }
+
+  [data-motion="off"] [data-reveal] {
+    opacity: 1 !important;
+    translate: none !important;
+  }
+
+  [data-motion="off"] *,
+  [data-motion="off"] *::before,
+  [data-motion="off"] *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-motion="off"] .book-cover:hover {
+    transform: none;
+  }
+}
+
+@media screen and (hover: hover) and (pointer: fine) {
+  [data-motion="on"] .book-cover {
+    transition: transform 300ms cubic-bezier(0.2, 0.7, 0.3, 1), box-shadow 300ms ease;
+  }
+
+  [data-motion="on"] .book-cover:hover {
+    transform: perspective(850px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateY(-5px);
+    box-shadow: 3px 6px 0 #e1d7c5, 8px 17px 25px #302d2324;
+  }
+
+  [data-motion="on"] :is(.quick-links > button, .ws-plan-card, .practice-card) {
+    transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
+  }
+
+  [data-motion="on"] :is(.quick-links > button, .ws-plan-card, .practice-card):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 23px #3e352114;
+    border-color: #c6b693;
+  }
+
+  [data-motion="on"] :is(.button, .ws-button, .motion-toggle) {
+    transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  }
+}
+
+@media screen and (min-width: 1550px) {
+  .library-hero {
+    min-height: 407px;
+  }
+
+  .hero-content {
+    padding: 43px 47px 38px;
+  }
+
+  .hero-content h2 {
+    font-size: 42px;
+  }
+
+  .concert-art {
+    right: 1%;
+    max-width: 570px;
+  }
+
+  .concert-arch {
+    right: 1%;
+    width: 100%;
+  }
+
+  .concert-instrument.instrument-violin {
+    right: 205px;
+    width: 155px;
+    height: 230px;
+  }
+
+  .concert-instrument.instrument-cello {
+    right: 58px;
+    width: 190px;
+    height: 290px;
+  }
+
+  .concert-instrument.instrument-clarinet {
+    right: 345px;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .proto-brand small {
+    font-size: 6px;
+  }
+
+  .topbar-tools {
+    gap: 11px;
+  }
+
+  .library-hero {
+    min-height: 363px;
+  }
+
+  .hero-content {
+    padding: 32px 29px;
+    max-width: 66%;
+  }
+
+  .hero-content h2 {
+    font-size: 31px;
+  }
+
+  .concert-art {
+    width: 44%;
+    opacity: 0.85;
+  }
+
+  .concert-arch {
+    width: 115%;
+    right: -11%;
+  }
+
+  .concert-instrument.instrument-violin {
+    width: 110px;
+    height: 180px;
+    right: 137px;
+  }
+
+  .concert-instrument.instrument-cello {
+    width: 150px;
+    height: 240px;
+    right: 18px;
+  }
+
+  .concert-instrument.instrument-clarinet {
+    right: 232px;
+    width: 65px;
+  }
+
+  .concert-caption {
+    right: 25px;
+    font-size: 9px;
+  }
+
+  .quick-links > button {
+    padding: 16px 13px;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .hero-content {
+    max-width: 76%;
+  }
+
+  .hero-content h2 {
+    font-size: 30px;
+  }
+
+  .concert-art {
+    width: 38%;
+    opacity: 0.6;
+  }
+
+  .concert-instrument.instrument-clarinet,
+  .concert-instrument.instrument-flute {
+    display: none;
+  }
+
+  .concert-instrument.instrument-violin {
+    right: 108px;
+    bottom: 45px;
+    width: 95px;
+  }
+
+  .concert-instrument.instrument-cello {
+    right: 3px;
+    bottom: 28px;
+  }
+
+  .concert-caption {
+    display: none;
+  }
+
+  .quick-links strong {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .proto-sidebar {
+    padding-top: 38px;
+  }
+
+  .proto-topbar {
+    min-height: 65px;
+    height: auto;
+    padding: 9px 20px;
+    gap: 8px;
+  }
+
+  .topbar-tools {
+    gap: 9px;
+    margin-left: auto;
+  }
+
+  .motion-toggle {
+    min-height: 40px;
+    padding: 8px 10px;
+    font-size: 10px;
+  }
+
+  .role-select {
+    gap: 5px;
+    font-size: 0;
+  }
+
+  .role-select select {
+    font-size: 10px;
+    padding-right: 6px;
+    padding-left: 6px;
+  }
+
+  .proto-main {
+    padding-top: 29px;
+  }
+
+  .heading-row h1 {
+    font-size: 29px;
+  }
+
+  .intro {
+    font-size: 12px;
+  }
+
+  .library-hero {
+    border-radius: 17px;
+    min-height: 355px;
+  }
+
+  .hero-content {
+    padding: 30px 27px;
+    max-width: 73%;
+  }
+
+  .hero-content h2 {
+    font-size: 30px;
+  }
+
+  .library-hero .hero-content > p {
+    font-size: 12px;
+  }
+
+  .library-hero .hero-kicker {
+    font-size: 9px;
+  }
+
+  .library-hero .hero-footnote {
+    font-size: 9px;
+  }
+
+  .concert-art {
+    opacity: 0.68;
+  }
+
+  .quick-links {
+    margin-bottom: 32px;
+  }
+
+  .quick-links > button {
+    padding: 15px 13px;
+  }
+
+  .instrument-tabs button {
+    font-size: 11px;
+    padding: 7px 8px;
+  }
+
+  .menu-scrim {
+    background: #101c2e80;
+    backdrop-filter: blur(2px);
+  }
+
+  .music-page-background {
+    left: 0;
+    width: 100%;
+    top: 160px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .proto-topbar {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .topbar-location {
+    font-size: 9px;
+    gap: 4px;
+  }
+
+  .topbar-tools {
+    gap: 6px;
+  }
+
+  .motion-toggle {
+    padding: 7px 9px;
+    gap: 5px;
+    font-size: 9px;
+  }
+
+  .motion-toggle svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .role-select select {
+    max-width: 66px;
+    min-height: 37px;
+  }
+
+  .proto-main {
+    padding-top: 26px;
+  }
+
+  .heading-row h1 {
+    font-size: 25px;
+    line-height: 1.6;
+    letter-spacing: -0.055em;
+  }
+
+  .intro {
+    font-size: 11px;
+    margin-top: 8px;
+  }
+
+  .eyebrow {
+    font-size: 8px;
+    letter-spacing: 0.12em;
+  }
+
+  .library-hero {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    border-radius: 16px;
+    background:
+      radial-gradient(ellipse at 75% 76%, #aa85412b, transparent 42%),
+      linear-gradient(145deg, #182437, #273750);
+  }
+
+  .library-hero::before {
+    top: 180px;
+    width: 390px;
+    height: 450px;
+  }
+
+  .hero-content {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    padding: 26px 24px 15px;
+  }
+
+  .hero-content h2 {
+    font-size: 28px;
+    margin-top: 16px;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+
+  .library-hero .hero-content > p {
+    font-size: 12px;
+  }
+
+  .hero-tags {
+    gap: 5px;
+    margin-top: 14px;
+  }
+
+  .hero-tags > span {
+    font-size: 9px;
+    padding: 4px 8px;
+  }
+
+  .hero-content .hero-button {
+    margin-top: 19px;
+    font-size: 12px;
+  }
+
+  .library-hero .hero-footnote {
+    font-size: 9px;
+    margin-top: 12px;
+  }
+
+  .concert-art {
+    position: relative;
+    align-self: flex-end;
+    inset: auto;
+    width: 100%;
+    height: 204px;
+    min-height: 204px;
+    opacity: 0.96;
+    margin-top: -9px;
+  }
+
+  .concert-arch {
+    right: calc(50% - 148px);
+    width: 296px;
+    height: 240px;
+    bottom: -20px;
+  }
+
+  .concert-score {
+    width: 110%;
+    height: 125%;
+    top: -33px;
+    right: -11px;
+    opacity: 0.36;
+  }
+
+  .concert-instrument.instrument-violin {
+    width: 98px;
+    height: 153px;
+    right: calc(50% - 3px);
+    bottom: 20px;
+  }
+
+  .concert-instrument.instrument-cello {
+    width: 121px;
+    height: 183px;
+    right: calc(50% - 102px);
+    bottom: 15px;
+  }
+
+  .concert-instrument.instrument-flute {
+    display: block;
+    width: 54px;
+    height: 88px;
+    right: calc(50% - 144px);
+    top: 16px;
+  }
+
+  .concert-instrument.instrument-clarinet {
+    display: block;
+    width: 49px;
+    height: 98px;
+    right: calc(50% + 90px);
+    bottom: 17px;
+  }
+
+  .quick-links {
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .quick-links > button {
+    padding: 13px 11px;
+    gap: 9px;
+    border-radius: 11px;
+    align-items: flex-start;
+  }
+
+  .quick-links > button > span {
+    width: 30px;
+    height: 34px;
+    flex-shrink: 0;
+    border-radius: 9px;
+  }
+
+  .quick-links > button > span svg {
+    width: 17px;
+  }
+
+  .quick-links strong {
+    font-size: 11px;
+  }
+
+  .quick-links small {
+    font-size: 9px;
+    line-height: 1.6;
+  }
+
+  .quick-links > button > svg {
+    display: none;
+  }
+
+  .instrument-tabs button {
+    padding-right: 7px;
+    padding-left: 7px;
+    font-size: 11px;
+  }
+
+  .section-heading .badge {
+    font-size: 9px;
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
+  .report-dialog {
+    padding: 22px 18px;
+  }
+}
+
+@media screen and (max-width: 359px) {
+  .topbar-location {
+    font-size: 8px;
+  }
+
+  .motion-toggle {
+    padding-right: 7px;
+    padding-left: 7px;
+  }
+
+  .role-select select {
+    max-width: 59px;
+  }
+
+  .heading-row h1 {
+    font-size: 23px;
+  }
+
+  .hero-content {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .hero-content h2 {
+    font-size: 25px;
+  }
+
+  .hero-tags > span {
+    font-size: 8px;
+    padding-right: 6px;
+    padding-left: 6px;
+  }
+
+  .quick-links > button {
+    padding-right: 9px;
+    padding-left: 9px;
+    gap: 7px;
+  }
+
+  .quick-links > button > span {
+    width: 27px;
+  }
+
+  .quick-links strong {
+    font-size: 10px;
+  }
+
+  .instrument-tabs button {
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proto-app *,
+  .proto-app *::before,
+  .proto-app *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .proto-app [data-reveal] {
+    opacity: 1 !important;
+    translate: none !important;
+  }
+
+  .proto-app .book-cover:hover,
+  .proto-app .quick-links > button:hover,
+  .proto-app .ws-plan-card:hover,
+  .proto-app .practice-card:hover {
+    transform: none !important;
+  }
+}
+
+@media print {
+  .music-page-background,
+  .concert-art,
+  .motion-toggle {
+    display: none !important;
+  }
+
+  .proto-app [data-reveal] {
+    opacity: 1 !important;
+    translate: none !important;
+    animation: none !important;
+  }
+}
+
+@keyframes concert-score-draw {
+  from {
+    stroke-dashoffset: 1;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes concert-instrument-enter {
+  from {
+    opacity: 0;
+    translate: 0 13px;
+  }
+  to {
+    opacity: 1;
+    translate: 0;
+  }
+}
+
+@keyframes concert-bookmark-pop {
+  0% {
+    transform: scale(0.8);
+  }
+  55% {
+    transform: scale(1.18);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes concert-dialog-enter {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+    scale: 0.98;
+  }
+  to {
+    opacity: 1;
+    translate: 0;
+    scale: 1;
+  }
+}
+
+@keyframes concert-toast-enter {
+  from {
+    opacity: 0;
+    translate: 0 10px;
+  }
+  to {
+    opacity: 1;
+    translate: 0;
+  }
+}

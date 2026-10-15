@@ -56,6 +56,12 @@ import {
   type SearchQuery,
 } from "@/lib/prototype";
 import { AdminView, TeacherPlansView } from "./WorkspaceViews";
+import {
+  MotionToggle,
+  MusicPageBackground,
+  useClassicalMotion,
+  useClassicalReveal,
+} from "./ClassicalMotion";
 
 type Run = (
   operation: (repo: PrototypeRepository) => Promise<unknown>,
@@ -65,12 +71,12 @@ const palette: Record<
   Instrument,
   { color: string; light: string; en: string; label: string }
 > = {
-  violin: { color: "#9e4c34", light: "#f3ddd0", en: "VIOLIN", label: "현악기" },
-  cello: { color: "#3d6460", light: "#dce7de", en: "CELLO", label: "현악기" },
-  flute: { color: "#625b82", light: "#e5e1ed", en: "FLUTE", label: "목관악기" },
+  violin: { color: "#79482f", light: "#f1dfc7", en: "VIOLIN", label: "현악기" },
+  cello: { color: "#29445c", light: "#dce5eb", en: "CELLO", label: "현악기" },
+  flute: { color: "#5b4b70", light: "#e9e1ed", en: "FLUTE", label: "목관악기" },
   clarinet: {
-    color: "#865a19",
-    light: "#f0e5ca",
+    color: "#5e6138",
+    light: "#e7e7d3",
     en: "CLARINET",
     label: "목관악기",
   },
@@ -102,37 +108,71 @@ function InstrumentDrawing({ instrument }: { instrument: Instrument }) {
       >
         {instrument === "violin" || instrument === "cello" ? (
           <>
-            <path d="M77 19h7l1 68c21-10 35 4 27 20-9 8-9 13 2 21 17 30-1 49-33 49s-50-19-33-49c11-8 11-13 2-21-8-16 6-30 27-20z" />
-            <path d="M77 18l-3-8 13 1-3 9M76 25h10M75 32h12M79 45v116M83 45v116M72 129h19M69 143q-11-13-7-22m34 0q4 9-4 18M78 164h7l-3 12M120 31l8 139M124 31l8 139" />
-            {instrument === "cello" && <path d="M81 177v11" />}
+            <path pathLength="1" d="M77 19h7l1 68c21-10 35 4 27 20-9 8-9 13 2 21 17 30-1 49-33 49s-50-19-33-49c11-8 11-13 2-21-8-16 6-30 27-20z" />
+            <path pathLength="1" d="M77 18l-3-8 13 1-3 9M76 25h10M75 32h12M79 45v116M83 45v116M72 129h19M69 143q-11-13-7-22m34 0q4 9-4 18M78 164h7l-3 12M120 31l8 139M124 31l8 139" />
+            {instrument === "cello" && <path pathLength="1" d="M81 177v11" />}
           </>
         ) : instrument === "flute" ? (
           <>
-            <path d="M36 154L118 27l7 5-82 127zM112 36l8 5M104 47l8 5M39 149l8 5M117 28l5-9 8 5-5 9" />
+            <path pathLength="1" d="M36 154L118 27l7 5-82 127zM112 36l8 5M104 47l8 5M39 149l8 5M117 28l5-9 8 5-5 9" />
             {[0, 1, 2, 3, 4, 5, 6].map((n) => (
               <g
                 key={n}
                 transform={`translate(${55 + n * 8},${131 - n * 12}) rotate(-57)`}
               >
                 <circle r="5" />
-                <path d="M0-5v-6h7" />
+                <path pathLength="1" d="M0-5v-6h7" />
               </g>
             ))}
-            <path d="M30 165l12-5M44 149l-7-4" />
+            <path pathLength="1" d="M30 165l12-5M44 149l-7-4" />
           </>
         ) : (
           <>
-            <path d="M77 18h10l-2 21 4 104 11 24q-17 9-35 0l11-24 3-104zM78 42h8M77 54h10M76 138h14M70 156h24M74 20l4-11h10l-1 11M76 63h15v12H76" />
+            <path pathLength="1" d="M77 18h10l-2 21 4 104 11 24q-17 9-35 0l11-24 3-104zM78 42h8M77 54h10M76 138h14M70 156h24M74 20l4-11h10l-1 11M76 63h15v12H76" />
             {[0, 1, 2, 3, 4].map((n) => (
               <g key={n}>
                 <circle cx="82" cy={84 + n * 11} r="3.5" />
-                <path d={`M88 ${84 + n * 11}h9v-7`} />
+                <path pathLength="1" d={`M88 ${84 + n * 11}h9v-7`} />
               </g>
             ))}
           </>
         )}
       </g>
     </svg>
+  );
+}
+
+function ConcertArtwork() {
+  return (
+    <div className="concert-art" aria-hidden="true">
+      <svg className="concert-arch" viewBox="0 0 480 400" fill="none">
+        <path d="M66 354V174a174 174 0 0 1 348 0v180M91 354V174a149 149 0 0 1 298 0v180M116 354V174a124 124 0 0 1 248 0v180" stroke="currentColor" />
+        <path d="M66 354h348M54 365h372M91 330h298M240 0v50M116 51l29 37M364 51l-29 37M72 112l47 17M408 112l-47 17" stroke="currentColor" />
+        <circle cx="240" cy="132" r="36" stroke="currentColor" />
+        <circle cx="240" cy="132" r="28" stroke="currentColor" />
+        <path d="M240 112v40m-20-20h40m-34-14 28 28m0-28-28 28" stroke="currentColor" />
+      </svg>
+      <svg className="concert-score" viewBox="0 0 480 400" fill="none">
+        <g stroke="currentColor" strokeWidth="1.1">
+          {[0, 1, 2, 3, 4].map((line) => (
+            <path className="score-line" pathLength="1" key={line} d={`M12 ${237 + line * 12}C150 ${330 + line * 12} 320 ${104 + line * 12} 478 ${167 + line * 12}`} />
+          ))}
+          <path className="score-line" pathLength="1" d="M67 274v-39q21 9 20 26M343 191v-41h31v31M430 189v-45" />
+        </g>
+        <g className="concert-notes" fill="currentColor">
+          <ellipse cx="60" cy="276" rx="8" ry="5" transform="rotate(-25 60 276)" />
+          <ellipse cx="336" cy="193" rx="8" ry="5" transform="rotate(-25 336 193)" />
+          <ellipse cx="367" cy="184" rx="8" ry="5" transform="rotate(-25 367 184)" />
+          <ellipse cx="423" cy="191" rx="8" ry="5" transform="rotate(-25 423 191)" />
+        </g>
+      </svg>
+      {INSTRUMENTS.map((instrument) => (
+        <div className={`concert-instrument instrument-${instrument}`} key={instrument}>
+          <InstrumentDrawing instrument={instrument} />
+        </div>
+      ))}
+      <span className="concert-caption">A small beginning. A lifetime of music.</span>
+    </div>
   );
 }
 
@@ -150,6 +190,9 @@ export default function PrototypeApp() {
     unit: Unit;
   } | null>(null);
   const location = `${path}${params.size ? "?" + params.toString() : ""}`;
+  const surfaceRef = useRef<HTMLDivElement>(null);
+  const motion = useClassicalMotion();
+  useClassicalReveal(surfaceRef, location, store.initialized, motion.enabled);
   const notify = useCallback((message: string) => setNotice(message), []);
   useEffect(() => {
     const off = repository.subscribe(() => setStore(repository.snapshot()));
@@ -300,7 +343,8 @@ export default function PrototypeApp() {
     setPlanTarget({ resource, version, unit });
   }
   return (
-    <div className="proto-app">
+    <div className="proto-app" data-motion={motion.enabled ? "on" : "off"} ref={surfaceRef}>
+      <MusicPageBackground />
       <a className="skip-link" href="#main-content">
         본문으로 바로가기
       </a>
@@ -420,20 +464,23 @@ export default function PrototypeApp() {
                 : activeNav?.label || "자료 열람"}
             </strong>
           </div>
-          <label className="role-select">
-            시연 역할{" "}
-            <select
-              value={role}
-              onChange={(e) => {
-                setRole(e.target.value);
-                if (e.target.value !== "teacher") navigate("/admin/resources");
-              }}
-            >
-              <option value="teacher">교사</option>
-              <option value="reviewer">가상 검수자</option>
-              <option value="editor">편집 관리자</option>
-            </select>
-          </label>
+          <div className="topbar-tools">
+            <MotionToggle {...motion} />
+            <label className="role-select">
+              시연 역할{" "}
+              <select
+                value={role}
+                onChange={(e) => {
+                  setRole(e.target.value);
+                  if (e.target.value !== "teacher") navigate("/admin/resources");
+                }}
+              >
+                <option value="teacher">교사</option>
+                <option value="reviewer">가상 검수자</option>
+                <option value="editor">편집 관리자</option>
+              </select>
+            </label>
+          </div>
         </header>
         <main id="main-content" className="proto-main" tabIndex={-1}>
           {store.storageNotice && (
@@ -502,34 +549,34 @@ export default function PrototypeApp() {
             <>
               {path === "/" ? (
                 <>
-                  <div className="heading-row">
+                  <div className="heading-row view-intro">
                     <div>
                       <p className="eyebrow">
-                        A SMALL LIBRARY, A NEW BEGINNING
+                        YOUR OWN LITTLE CONSERVATORY
                       </p>
-                      <h1>좋은 수업은, 좋은 한 권에서.</h1>
+                      <h1>오늘의 한 음이, 내일의 음악으로.</h1>
                       <p className="intro">
-                        읽고, 고르고, 연결하며 나만의 음악 수업을 준비하세요.
+                        악기를 배우는 설렘이 오래 머무는, 나만의 클래식 서재.
                       </p>
                     </div>
                     <span className="edition-mark">
-                      가을의 책장 <span>2026 · VOL. 01</span>
+                      나의 작은 음악원 <span>READ · PLAY · GROW</span>
                     </span>
                   </div>
                   <section className="library-hero">
                     <div className="hero-content">
                       <span className="hero-kicker">
-                        <span /> 선생님을 위한 클래식 전자도서관
+                        <span /> CLASSICAL MUSIC, YOUR NEXT CHAPTER
                       </span>
                       <h2>
-                        책을 펼치는 순간,
+                        나의 속도로,
                         <br />
-                        수업의 영감이 시작됩니다.
+                        클래식과 가까워지는 시간.
                       </h2>
                       <p>
-                        네 가지 악기, 서로 다른 첫걸음.
+                        첫 소리의 설렘부터, 한 곡을 완성하는 기쁨까지.
                         <br />
-                        필요한 자료를 찾아 한 번의 수업으로 엮어 보세요.
+                        책 한 권을 펼치고 오늘의 연주를 시작해 보세요.
                       </p>
                       <button
                         className="button hero-button"
@@ -537,11 +584,7 @@ export default function PrototypeApp() {
                           document
                             .getElementById("bookshelf")
                             ?.scrollIntoView({
-                              behavior: window.matchMedia(
-                                "(prefers-reduced-motion: reduce)",
-                              ).matches
-                                ? "auto"
-                                : "smooth",
+                              behavior: motion.enabled ? "smooth" : "auto",
                             })
                         }
                       >
@@ -551,34 +594,13 @@ export default function PrototypeApp() {
                         <BookOpen size={16} /> 합성 데모 {demoCount}권{" "}
                         <span>·</span> 구조화 단원 열람
                       </div>
-                    </div>
-                    <div className="hero-still-life" aria-hidden="true">
-                      <div className="still-halo" />
-                      <div className="still-book back">
-                        <span>THE ART OF</span>
-                        <b>
-                          MUSIC
-                          <br />
-                          LESSONS
-                        </b>
-                        <i>한 권으로 시작하는 수업</i>
+                      <div className="hero-tags" aria-label="함께 배우는 악기">
+                        <span>바이올린</span><span>첼로</span><span>플루트</span><span>클라리넷</span>
                       </div>
-                      <div className="still-book front">
-                        <span>LESSON DESIGNER</span>
-                        <b>
-                          나의 첫<br />
-                          클래식 수업
-                        </b>
-                        <InstrumentDrawing instrument="violin" />
-                        <small>읽고, 연주하고, 함께 자라다.</small>
-                      </div>
-                      <div className="still-shelf" />
-                      <span className="still-caption">
-                        A place for your next musical chapter.
-                      </span>
                     </div>
+                    <ConcertArtwork />
                   </section>
-                  <div className="quick-links">
+                  <div className="quick-links" data-reveal>
                     <button onClick={() => navigate("/teacher/plans")}>
                       <span>
                         <NotebookPen size={22} />
@@ -595,7 +617,7 @@ export default function PrototypeApp() {
                       </span>
                       <div>
                         <strong>악기 연습실</strong>
-                        <small>단원과 연결할 앱 후보 살펴보기</small>
+                        <small>나의 악기와 조금 더 친해지는 시간</small>
                       </div>
                       <ArrowUpRight size={19} />
                     </button>
@@ -647,9 +669,9 @@ export default function PrototypeApp() {
               <section id="bookshelf" aria-labelledby="shelf-title">
                 <div className="section-heading">
                   <div>
-                    <p className="eyebrow">CURATED FOR YOUR CLASSROOM</p>
+                    <p className="eyebrow">A LITTLE PRACTICE, EVERY DAY</p>
                     <h2 id="shelf-title">
-                      선생님의 책장 <span>{books.length}</span>
+                      함께 펼치는 책장 <span>{books.length}</span>
                     </h2>
                   </div>
                   <span className="badge">합성 데모 서고</span>
@@ -1035,6 +1057,7 @@ function BookCard({
   return (
     <article
       className="shelf-book"
+      data-reveal
       style={
         {
           "--book-color": color.color,

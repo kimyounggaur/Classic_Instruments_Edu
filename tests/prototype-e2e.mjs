@@ -197,9 +197,51 @@ for (const [name, route] of [['home', '/'], ['reader', '/library/demo-violin-tex
   }, { input: { name, route } });
 }
 
+suite('classical-motion', async function (page, h) {
+  await h.goto('/');
+  const app = page.locator('.proto-app');
+  const toggle = page.getByRole('button', { name: '애니메이션', exact: true });
+  await h.attr(app, 'data-motion', 'on');
+  await h.visible(page.getByRole('heading', { name: '오늘의 한 음이, 내일의 음악으로.', exact: true }));
+  h.assert(await page.locator('.concert-instrument').count() === 4, '네 악기의 콘서트 일러스트 누락');
+  h.assert(await page.locator('.concert-art').getAttribute('aria-hidden') === 'true', '장식이 스크린리더에 노출됨');
+  const scoreMotion = await page.locator('.score-line').first().evaluate(element => getComputedStyle(element).animationName);
+  h.assert(scoreMotion !== 'none', '일반 설정에서 악보 선 그리기 애니메이션 누락');
+  h.assert(await page.locator('.concert-instrument path').first().evaluate(element => getComputedStyle(element).animationName) !== 'none', '악기 윤곽선 애니메이션 누락');
+  for (const book of await page.locator('.shelf-book').all()) await book.scrollIntoViewIfNeeded();
+  await page.waitForFunction(() => [...document.querySelectorAll('.shelf-book')].every(element => element.classList.contains('is-revealed')));
+  await toggle.click(); await h.attr(app, 'data-motion', 'off'); await h.attr(toggle, 'aria-pressed', 'false');
+  await page.evaluate(() => {
+    const original = Element.prototype.scrollIntoView;
+    Element.prototype.scrollIntoView = function (options) {
+      window.__classicalScrollBehavior = options?.behavior;
+      return original.call(this, options);
+    };
+  });
+  await page.getByRole('button', { name: '책장 둘러보기', exact: true }).click();
+  h.assert(await page.evaluate(() => window.__classicalScrollBehavior) === 'auto', '움직임 꺼짐에서 부드러운 스크롤 실행');
+  await page.reload(); await h.attr(app, 'data-motion', 'off');
+  await page.locator('.shelf-book').last().scrollIntoViewIfNeeded();
+  const visibleBooks = await page.locator('.shelf-book').evaluateAll(elements => elements.every(element => getComputedStyle(element).opacity === '1'));
+  h.assert(visibleBooks, '움직임을 껐을 때 책이 숨겨짐');
+  await toggle.click(); await h.attr(app, 'data-motion', 'on');
+  await page.emulateMedia({ reducedMotion: 'reduce' }); await h.attr(app, 'data-motion', 'off');
+  h.assert(await page.getByRole('button', { name: '기기 설정에 따라 애니메이션 꺼짐', exact: true }).isDisabled(), 'OS 동작 줄이기 미반영');
+  h.assert(await page.locator('.score-line').first().evaluate(element => getComputedStyle(element).animationName) === 'none', 'OS 동작 줄이기에서 선 애니메이션 실행');
+  await page.emulateMedia({ reducedMotion: 'no-preference' }); await h.attr(app, 'data-motion', 'on');
+  await page.evaluate(() => { Storage.prototype.setItem = function () { throw new DOMException('Motion preference storage blocked', 'QuotaExceededError'); }; });
+  await toggle.click(); await h.attr(app, 'data-motion', 'off');
+  await toggle.click(); await h.attr(app, 'data-motion', 'on');
+  await page.emulateMedia({ media: 'print' });
+  h.assert(await page.locator('.music-page-background').evaluate(element => getComputedStyle(element).display) === 'none', '인쇄에 악보 배경이 출력됨');
+  await page.emulateMedia({ media: 'screen', reducedMotion: 'reduce' });
+  await page.setViewportSize({ width: 360, height: 1000 }); await h.noOverflow('클래식 테마 모바일');
+  await page.screenshot({ path: h.artifact('classical-motion-mobile.png'), fullPage: true });
+}, { reducedMotion: 'no-preference' });
+
 function browserCode(specification) {
   return `async (page) => {
-    const context = await page.context().browser().newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
+    const context = await page.context().browser().newContext({viewport:{width:1440,height:1000},reducedMotion:${JSON.stringify(specification.reducedMotion || 'reduce')}});
     const target = await context.newPage(); target.setDefaultTimeout(8000); target.setDefaultNavigationTimeout(15000);
     const attempted = []; const pageErrors = []; const permissionAttempts = [];
     await context.exposeFunction('__prototypeRecordPermission', kind => permissionAttempts.push(kind));

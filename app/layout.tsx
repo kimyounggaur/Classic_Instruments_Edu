@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "@/components/prototype/prototype.css";
+import "@/components/prototype/classical-theme.css";
 
 export const metadata: Metadata = {
   title: "레슨 디자이너 | 음악 전자도서관",
