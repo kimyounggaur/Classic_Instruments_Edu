@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { ArrowUp, BookOpen, Check, ChevronRight, Clock3, ExternalLink, GraduationCap, Lightbulb, MessageCircle, Play, Quote, Sparkles } from 'lucide-react';
 import type { Instrument } from '@/lib/catalog';
-import rawKnowledge from '@/public/data/knowledge.json';
-import targetCatalog from '@/public/data/target_catalog.json';
+import rawKnowledge from '@/retained-private/data/knowledge.json';
+import targetCatalog from '@/retained-private/data/target_catalog.json';
 import { evidenceForPage, firstSentence, firstSourcePage, retrieveEvidence, type EvidenceResult, type KnowledgeEntry } from '@/lib/knowledge';
 import './teaching.css';
 

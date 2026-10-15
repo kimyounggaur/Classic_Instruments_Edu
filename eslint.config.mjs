@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "output/**",
+    "retained-private/**",
+    ".playwright-cli/**",
+    ".sites-runtime/**",
   ]),
   {
     files: ["components/BookReader.tsx"],

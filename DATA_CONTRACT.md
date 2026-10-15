@@ -1,14 +1,15 @@
 # 데이터 계약
 
-| 데이터 | 역할 | 답변 사용 | 상태 |
-| --- | --- | --- | --- |
-| `public/data/textbooks.json` | 14권 페이지·목차·원문 연결 | 페이지 탐색·검색만 | 교재 초안 |
-| `public/data/knowledge.json` | 4악기 19개 미검수 원자료 발췌 | 결정적 검색만 | `unreviewed_source` |
-| `public/data/target_catalog.json` | P00–P11 목표 24개 | 사용 금지 | `implementation_target_only` |
-| `public/data/webapp_registry.json` | 38개 앱 메타데이터 | UI 카탈로그만 | 외부 실행 미검증 |
+현재 v1.1 프로토타입의 상세 계약은 [docs/DATA_CONTRACT.md](docs/DATA_CONTRACT.md), 실행 타입·검증은 `lib/prototype/`를 따른다.
 
-`knowledge.json`의 각 항목은 `instrument`, `chapter`, `pageRange`, `verifiedContent`, `fingeringSpec`, `cautionNotes`, `sourceFileUrl`, `sampleQuestions`를 가진다. `verifiedContent`라는 필드명은 기존 원본 호환성을 위한 이름일 뿐 감수 완료를 뜻하지 않는다.
+| 데이터 | 현재 의미 |
+|---|---|
+| LegacyEntry 19개 | 본문 없는 미검수 메타데이터, draft·권리 unknown·승인 null |
+| ModulePlan 24개 | 4악기×6슬롯 제안 계획, 콘텐츠 완성 실적 아님 |
+| AppLink 37개 | 첨부 문서 원본 URL 후보, 초기 unchecked·비활성 |
+| 합성 책장 8자료/16단원 | 새로 만든 중립 UI 구조 예시, 실제 교육 승인 아님 |
+| 합성 관리자 fixture 4자료/8단원 | 검수·권리·보류 예외 시연, 기본 책장 제외 |
+| 합성 LessonPlan 4개 | 악기별 40분 구조, 브라우저 저장 |
+| 실제 승인자료 | 0개 |
 
-`target_catalog.json`은 반드시 24개 항목을 유지한다. 각 항목은 `id`, `phase`, `title`, `status`를 가지며 `answerEligibility: false`여야 한다.
-
-어떤 화면도 24개 목표를 19개 원자료로 합산하거나, 목표를 보조교사 답변의 근거로 사용해서는 안 된다.
+이전 `public/data` 원문 JSON 4개와 교재 파일은 `retained-private/`에 로컬 보존하며 현재 앱에 포함하지 않는다. 과거 `verifiedContent` 필드명은 전문가 검수 근거가 아니다. 원자료·기획·데모·실제 승인을 합산하지 않는다.

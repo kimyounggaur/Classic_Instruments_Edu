@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "@/components/prototype/prototype.css";
 
 export const metadata: Metadata = {
   title: "레슨 디자이너 | 음악 전자도서관",
-  description: "교재에서 실습까지, 음악 수업의 모든 순간을 연결합니다. 14종 클래식 악기 전자교재와 음악 실습 앱.",
+  description:
+    "바이올린·첼로·플루트·클라리넷 수업을 준비하는 시연용 전자도서관. 책장, 구조화 단원, 수업안, 권리와 검수 흐름.",
   manifest: "/manifest.webmanifest",
   icons: {
     icon: "/favicon.svg",

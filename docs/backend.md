@@ -1,5 +1,7 @@
 # 개발판 백엔드 범위
 
+> 이전 구현의 보존 기록입니다. 현재 v1.1 프로토타입은 `lib/prototype`의 브라우저 저장 repository를 사용합니다. 최신 구조와 실제 실행 결과는 [ARCHITECTURE](ARCHITECTURE.md), [TEST_REPORT](TEST_REPORT.md)를 따릅니다.
+
 현재 작업공간은 기존 React/Vinext·TypeScript·D1 의존성과 스키마를 보존하지만, 이번 개발판은 mock-first 검토용이다. 운영 배포나 D1 바인딩을 사용하지 않는다.
 
 ## 비활성화한 기능

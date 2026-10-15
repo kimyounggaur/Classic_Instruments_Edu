@@ -1,10 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-// @ts-expect-error Node's test runner executes TypeScript directly.
 import { GET as getMe } from '../app/api/me/route.ts';
-// @ts-expect-error Node's test runner executes TypeScript directly.
 import { GET as getState, PUT as putState } from '../app/api/state/route.ts';
-// @ts-expect-error Node's test runner executes TypeScript directly.
 import { GET as getClassroom, POST as postClassroom } from '../app/api/classroom/route.ts';
 
 test('mock-only API never exposes an account or persisted workspace', async () => {

@@ -1,7 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-// @ts-expect-error Node's test runner executes TypeScript directly.
 import { evidenceForPage, firstSentence, firstSourcePage, pageRanges, retrieveEvidence, type KnowledgeEntry } from '../lib/knowledge.ts';
 
 const entries: KnowledgeEntry[] = JSON.parse(readFileSync(new URL('../public/data/knowledge.json', import.meta.url), 'utf8')).entries;
