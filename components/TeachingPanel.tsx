@@ -3,13 +3,18 @@
 import { useState } from 'react';
 import { ArrowUp, BookOpen, Check, ChevronRight, Clock3, ExternalLink, GraduationCap, Lightbulb, MessageCircle, Play, Quote, Sparkles } from 'lucide-react';
 import type { Instrument } from '@/lib/catalog';
-import rawKnowledge from '@/retained-private/data/knowledge.json';
-import targetCatalog from '@/retained-private/data/target_catalog.json';
 import { evidenceForPage, firstSentence, firstSourcePage, retrieveEvidence, type EvidenceResult, type KnowledgeEntry } from '@/lib/knowledge';
 import './teaching.css';
 
-const knowledge: KnowledgeEntry[] = rawKnowledge.entries;
-const targetCount = targetCatalog.targets.length;
+// The legacy teaching panel is not part of the active prototype. Its former
+// source JSON is intentionally retained outside the deployable repository
+// until content and rights review are complete.
+const knowledge: KnowledgeEntry[] = [];
+const targetCount = 0;
+const datasetMetadata = {
+  instrumentsCovered: [] as string[],
+  sourceUrl: '#',
+};
 
 export interface TeachingPanelProps {
   instrument: Instrument;
@@ -113,7 +118,7 @@ function TeachingPanelContent({ instrument, page, onOpenPage, onLaunch, onVideo,
     <div className="teaching-bottom">
       <form onSubmit={event => { event.preventDefault(); ask(question); }} className="teaching-question-form"><label className="teaching-sr-only" htmlFor={`teaching-question-${instrument.id}`}>교재에 질문하기</label><textarea id={`teaching-question-${instrument.id}`} rows={1} placeholder="교재에 대해 질문해 보세요" value={question} maxLength={500} onChange={event => setQuestion(event.target.value)} onKeyDown={event => { if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) { event.preventDefault(); ask(question); } }} /><button type="submit" disabled={!question.trim()} aria-label="질문 보내기"><ArrowUp size={17} /></button></form>
       <p>미검수 원자료 {knowledge.length}개 · 목표 {targetCount}개와 분리 · 전문 교사 검수 완료 미확인</p>
-      <details className="teaching-method"><summary>답변 방식 안내</summary><p>현재는 외부 생성형 AI 없이 {rawKnowledge.datasetMetadata.instrumentsCovered.length}개 악기의 미검수 원자료 {knowledge.length}개에서 관련 문단만 결정적으로 검색합니다. 구현 목표 {targetCount}개는 별도 카탈로그이며 답변 근거로 사용하지 않습니다. 출처 쪽수는 데이터에 기록된 값을 표시하므로 교재 원문과 대조해 주세요. 근거가 부족하거나 질문이 모호하면 답하지 않습니다. <a href={rawKnowledge.datasetMetadata.sourceUrl} target="_blank" rel="noreferrer">기반 데이터 원본 확인</a></p></details>
+      <details className="teaching-method"><summary>답변 방식 안내</summary><p>현재는 외부 생성형 AI 없이 {datasetMetadata.instrumentsCovered.length}개 악기의 미검수 원자료 {knowledge.length}개에서 관련 문단만 결정적으로 검색합니다. 구현 목표 {targetCount}개는 별도 카탈로그이며 답변 근거로 사용하지 않습니다. 출처 쪽수는 데이터에 기록된 값을 표시하므로 교재 원문과 대조해 주세요. 근거가 부족하거나 질문이 모호하면 답하지 않습니다. {datasetMetadata.sourceUrl !== '#' && <a href={datasetMetadata.sourceUrl} target="_blank" rel="noreferrer">기반 데이터 원본 확인</a>}</p></details>
     </div>
   </aside>;
 }
